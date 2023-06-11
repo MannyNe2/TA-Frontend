@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Abay Bus",
+    "image": "/images/carrier_logos/abay.jpg"
+  },
+  {
+    "name": "Africa Express Bus",
+    "image": "/images/carrier_logos/africaexpress.jpg"
+  },
+  {
+    "name": "Air Bus",
+    "image": "/images/carrier_logos/air.png"
+  },
+  {
+    "name": "Alpha Bus",
+    "image": "/images/carrier_logos/alpha.jpg"
+  },
+  {
+    "name": "Dream Bus",
+    "image": "/images/carrier_logos/dream.jpg"
+  },
+  {
+    "name": "Ethio Bus",
+    "image": "/images/carrier_logos/ethio.jpg"
+  },
+  {
+    "name": "FM Bus",
+    "image": "/images/carrier_logos/fm.jpg"
+  },
+  {
+    "name": "Gada Bus",
+    "image": "/images/carrier_logos/gada.jpg"
+  },
+  {
+    "name": "Ghion Bus",
+    "image": "/images/carrier_logos/ghion.jpg"
+  },
+  {
+    "name": "Golden Bus",
+    "image": "/images/carrier_logos/golden.jpg"
+  },
+  {
+    "name": "Habesha Bus",
+    "image": "/images/carrier_logos/habesha.jpg"
+  },
+  {
+    "name": "Noah Bus",
+    "image": "/images/carrier_logos/noah.jpg"
+  },
+  {
+    "name": "Odaa Bus",
+    "image": "/images/carrier_logos/odaa.jpg"
+  },
+  {
+    "name": "Selam Bus",
+    "image": "/images/carrier_logos/selam.png"
+  },
+  {
+    "name": "Walya Bus",
+    "image": "/images/carrier_logos/walya.jpg"
+  },
+  {
+    "name": "Yegna Bus",
+    "image": "/images/carrier_logos/yegna.png"
+  },
+  {
+    "name": "Zemen Bus",
+    "image": "/images/carrier_logos/zemen.jpg"
+  }
+]

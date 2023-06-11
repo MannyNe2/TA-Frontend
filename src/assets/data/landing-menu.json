@@ -1,0 +1,39 @@
+[
+  {
+    "label": "Services",
+    "to": "",
+    "sub": [
+      {
+        "label": "Bus tickets",
+        "to": ""
+      },
+      {
+        "label": "Train tickets",
+        "to": ""
+      },
+      {
+        "label": "Metro cards",
+        "to": "",
+        "featured": true
+      },
+      {
+        "label": "Support",
+        "to": "",
+        "sub": [
+          {
+            "label": "Drivers and Software",
+            "to": ""
+          },
+          {
+            "label": "Manuals and Documentation",
+            "to": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "About us",
+    "to": ""
+  }
+]

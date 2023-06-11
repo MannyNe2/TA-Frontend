@@ -1,0 +1,22 @@
+[
+  {
+    "origin": "",
+    "destination": "",
+    "vehicle": {
+      "type": "",
+      "manufacturer": "",
+      "model": "",
+      "transit_company": {
+        "logo": "",
+        "name": ""
+      },
+      "capacity": "",
+      "booked_seats": "",
+      "tags": ["", ""]
+    },
+    "round_trip": true,
+    "leave_date": "",
+    "return date": "",
+    "price": ""
+  }
+]
