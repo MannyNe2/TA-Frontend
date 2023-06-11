@@ -1,4 +1,4 @@
-# Ticket App (ticket-cms)
+# Travel Away (ticket-cms)
 
 A Quasar Project
 
