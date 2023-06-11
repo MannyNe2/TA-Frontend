@@ -1,7 +1,5 @@
 # Travel Away (ticket-cms)
 
-A Quasar Project
-
 ## Install the dependencies
 ```bash
 yarn
