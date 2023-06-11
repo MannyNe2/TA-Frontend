@@ -1,0 +1,9 @@
+query signIn($address: String!, $password: String!) {
+  signIn(address: $address, password: $password) {
+    userId
+    accessToken
+    firstName
+    lastName
+    role
+  }
+}

@@ -1,0 +1,20 @@
+query getCharacters {
+  characters {
+    info {
+      count
+      pages
+    }
+    results {
+      id
+      name
+      status
+      species
+      gender
+      origin {
+        name
+      }
+      image
+      created
+    }
+  }
+}
