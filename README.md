@@ -1,6 +1,4 @@
-# Ticket App (ticket-cms)
-
-A Quasar Project
+# Travel Away (ticket-cms)
 
 ## Install the dependencies
 ```bash
