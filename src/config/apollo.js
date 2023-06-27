@@ -34,13 +34,13 @@ const connectionParams = (headers = {}) => {
 
 // Apollo link for use with queries and mutations
 const httpLink = createHttpLink({
-  uri: 'https://rickandmortyapi.com/graphql',
+  uri: process.env.HINDEKE_GRAPHQL_HTTP_URL,
 });
 
 // Apollo link for use with subscriptions
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: 'wss://rickandmortyapi.com/graphql',
+    url: process.env.HINDEKE_GRAPHQL_WS_URL,
   })
 );
 

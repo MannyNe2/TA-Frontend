@@ -95,13 +95,20 @@ const date = ref(null);
 const returnDate = ref(null);
 const passengers = ref(1);
 
-function onSubmit() {
+async function onSubmit() {
   store.setOrigin(origin.value);
   store.setDestination(destination.value);
   store.setDate(date.value);
   store.setReturnDate(returnDate.value);
   store.setPassengers(parseInt(passengers.value));
   // router.push({ name: 'root-search' });
+  const dataQuery = {
+    origin: origin.value,
+    destination: destination.value,
+    date: date.value,
+  };
+  const x = await store.search(dataQuery);
+  console.log(x);
   router.push('/search');
 }
 </script>

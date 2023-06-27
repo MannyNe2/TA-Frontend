@@ -1,0 +1,27 @@
+query search(
+  $origin: String = ""
+  $destination: String = ""
+  $date: date = ""
+) {
+  tickets_available(
+    where: {
+      start_location: { _ilike: $origin }
+      destination: { _ilike: $destination }
+      departure_date: { _eq: $date }
+    }
+  ) {
+    buses_available {
+      car_type
+      provider {
+        provider_name
+      }
+      accomodations
+      seat_size
+    }
+    start_location
+    destination
+    price
+    seats_left
+    departure_date
+  }
+}

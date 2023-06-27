@@ -56,7 +56,7 @@ export function getTransitRoutes({
       round_trip: !!returnDate,
       leave_date: leaveDateGen.toISOString(),
       return_date: returnDateGen.toISOString(),
-      price: faker.commerce.price(500, 150000),
+      price: faker.commerce.price(500, 1500),
     });
   }
   return routes;

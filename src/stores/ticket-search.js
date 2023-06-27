@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia';
+import { hindekeClient } from 'src/config/apollo';
+import search from 'src/queries/search.gql';
 
 export const useTicketSearchStore = defineStore('ticket-search', {
   state: () => ({
@@ -53,5 +55,26 @@ export const useTicketSearchStore = defineStore('ticket-search', {
     //     this.passengers
     //   );
     // },
+
+    async search({ origin, destination, date }) {
+      try {
+        const res = await hindekeClient
+          .query({
+            query: search,
+            variables: {
+              origin: '%' + origin + '%',
+              destination: '%' + destination + '%',
+              date: date,
+            },
+          })
+          .then(({ data }) => data && data.tickets_available);
+        if (res) {
+          return res;
+        }
+        //router.push('/home');
+      } catch (error) {
+        return error;
+      }
+    },
   },
 });
