@@ -45,6 +45,22 @@ const routes = [
     ],
   },
   {
+    path: '/ticket',
+    component: () => import('layouts/CenterDialogLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'ticket',
+        component: () => import('pages/ticket/TicketPage.vue'),
+      },
+      {
+        path: ':id',
+        name: 'ticket-confirm',
+        component: () => import('pages/ticket/TicketConfirmation.vue'),
+      },
+    ],
+  },
+  {
     path: '/home',
     component: () => import('layouts/HomeLayout.vue'),
     children: [

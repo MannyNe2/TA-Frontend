@@ -4,8 +4,10 @@ import {
   createHttpLink,
   from,
   InMemoryCache,
+  split,
 } from '@apollo/client/core';
 import { RetryLink } from '@apollo/client/link/retry';
+import { WebSocketLink } from '@apollo/client/link/ws';
 import { onError } from '@apollo/client/link/error';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { getMainDefinition } from '@apollo/client/utilities';
@@ -38,11 +40,13 @@ const httpLink = createHttpLink({
 });
 
 // Apollo link for use with subscriptions
-const wsLink = new GraphQLWsLink(
-  createClient({
-    url: process.env.HINDEKE_GRAPHQL_WS_URL,
-  })
-);
+const wsLink = new WebSocketLink({
+  uri: process.env.HINDEKE_GRAPHQL_WS_URL,
+  options: {
+    reconnect: true,
+    lazy: true,
+  },
+});
 
 // Callback for checking if the GraphQL operation is a subscription
 const subscriptionCheck = ({ query }) => {
@@ -57,7 +61,7 @@ const subscriptionCheck = ({ query }) => {
 // --------------------------------------------------------------------
 // Uses wsLink if the subscriptionCheck returns true,
 // or httpLink if subscriptionCheck returns false
-const baseLink = new RetryLink.split(subscriptionCheck, wsLink, httpLink);
+const baseLink = new split(subscriptionCheck, wsLink, httpLink);
 
 // onError() - Apollo error handler link
 const errorLink = onError(({ graphQLErrors, networkError }) => {

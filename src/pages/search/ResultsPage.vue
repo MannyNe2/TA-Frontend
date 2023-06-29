@@ -35,6 +35,11 @@ const store = useTicketSearchStore();
 
 const results = computed(() => {
   const query = store.query;
-  return query ? getTransitRoutes(query) : false;
+  const res = store.results;
+  if (store.results.length === 0) {
+    return false;
+  }
+  return getTransitRoutes(query);
+  //console.log('results', res[0].start_location);
 });
 </script>

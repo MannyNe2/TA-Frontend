@@ -1,4 +1,7 @@
 import { faker } from '@faker-js/faker';
+import { useTicketSearchStore } from 'src/stores/ticket-search';
+
+const store = useTicketSearchStore();
 // import crypto from 'crypto';
 
 export function getTransitRoutes({
@@ -8,10 +11,13 @@ export function getTransitRoutes({
   returnDate,
   passengers,
 }) {
-  let resultsCount = faker.datatype.number({
+  /*   let resultsCount = faker.datatype.number({
     min: 1,
     max: 5,
-  }); // crypto.randomInt(0, 50);
+  }); // crypto.randomInt(0, 50); */
+
+  let resultsCount = store.results.length;
+
   const routes = [];
   while (resultsCount-- > 0) {
     let tagsCount = faker.datatype.number({
@@ -43,20 +49,35 @@ export function getTransitRoutes({
       tags,
     };
 
-    const leaveDateInput = new Date(date);
-    const leaveDateGen = faker.date.between(leaveDateInput, leaveDateInput);
-    const returnDateInput = new Date(returnDate);
-    const returnDateGen = faker.date.between(returnDateInput, returnDateInput);
+    const leaveDateGen = new Date(date);
+    const leaveDateDiff = new Date(date);
+    const returnDateFinal = returnDate
+      ? returnDate
+      : leaveDateDiff.setDate(leaveDateDiff.getDate() + 5);
+    const returnDateInput = new Date(returnDateFinal);
+    const returnDateGen = faker.date.between(leaveDateGen, returnDateInput);
+
+    console.log();
 
     routes.push({
-      id: faker.datatype.uuid(), // crypto.randomUUID(),
-      origin,
-      destination,
-      vehicle,
+      id: store.results[resultsCount].id, // crypto.randomUUID(),
+      origin: store.results[resultsCount].start_location,
+      destination: store.results[resultsCount].destination,
+      vehicle: {
+        type: store.results[resultsCount].buses_available.car_type,
+        transit_company: {
+          logo: faker.image.abstract(640, 480, true),
+          name: store.results[resultsCount].buses_available.provider
+            .provider_name,
+        },
+        capacity: store.results[resultsCount].buses_available.seat_size,
+        booked_seats: store.results[resultsCount].seats_left,
+        tags: store.results[resultsCount].buses_available.accomodations,
+      },
       round_trip: !!returnDate,
       leave_date: leaveDateGen.toISOString(),
       return_date: returnDateGen.toISOString(),
-      price: faker.commerce.price(500, 1500),
+      price: Number(store.results[resultsCount].price.slice(1)),
     });
   }
   return routes;

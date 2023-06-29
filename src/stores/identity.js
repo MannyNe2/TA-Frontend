@@ -70,9 +70,12 @@ export const useIdentityStore = defineStore('identity', {
           })
           .then(({ data }) => data && data.signIn);
         if (res) {
+          console.log(res);
           const user = {
             firstName: res.firstName,
             lastName: res.lastName,
+            middleName: res.middleName,
+            phone: res.phone,
             userId: res.userId,
           };
           try {

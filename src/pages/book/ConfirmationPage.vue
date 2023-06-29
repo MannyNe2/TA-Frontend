@@ -181,12 +181,14 @@ import { computed, ref } from 'vue';
 import { useTicketSearchStore } from 'src/stores/ticket-search';
 import { useOldCheckoutStore } from 'src/stores/old-checkout';
 import { useCheckoutStore } from 'src/stores/checkout';
+import { useIdentityStore } from 'src/stores/identity';
 import { faker } from '@faker-js/faker';
 import { useRoute } from 'vue-router';
 import { formatPrice } from 'src/utils/money';
 import { fakeUserInfoEndpoint } from 'src/services/fake-auth';
 import fetch from 'cross-fetch';
-import axios from 'axios';
+import { hindekeClient } from 'src/config/apollo';
+import addTransaction from 'src/queries/addTransaction.gql';
 
 const slides = ref(['confirm', 'checkout']);
 const slide = ref(slides.value[0]);
@@ -199,6 +201,7 @@ const acceptableUnits = ['km', 'm'];
 
 const ticketStore = useTicketSearchStore();
 const checkoutStore = useCheckoutStore();
+const identityStore = useIdentityStore();
 // const origin = computed(() => ticketStore.$state.origin);
 // const destination = computed(() => ticketStore.$state.destination);
 // const date = computed(() => ticketStore.$state.date);
@@ -209,7 +212,7 @@ const fullName = computed(() => checkoutStore.getFullName);
 const phone = computed(() => checkoutStore.getPhone);
 const origin = computed(() => checkoutStore.result.origin);
 const destination = computed(() => checkoutStore.result.destination);
-const date = computed(() => checkoutStore.result.date);
+const date = computed(() => new Date(checkoutStore.result.leave_date));
 const returnDate = computed(() => checkoutStore.result.returnDate);
 const passengers = computed(() => checkoutStore.result.passengers ?? 1);
 const distance =
@@ -266,6 +269,25 @@ async function checkout() {
     console.log(error);
   } */
 
+  /*   try {
+    const res = await hindekeClient
+      .mutate({
+        mutation: addTransaction,
+        variables: {
+          amount: price,
+          ticket_id: id,
+          user: identityStore.profile.userId,
+        },
+      })
+      .then(({ data }) => data && data.insert_transaction_one);
+    if (res) {
+      console.log(res);
+    }
+    //router.push('/home');
+  } catch (error) {
+    console.log(error);
+  } */
+
   const makeGraphQLClient =
     ({ url, headers }) =>
     async ({ query }) => {
@@ -279,7 +301,7 @@ async function checkout() {
     };
 
   const sendQuery = makeGraphQLClient({
-    url: 'https://amannnegussie2.npkn.net/payment',
+    url: 'https://amannnegussie2.npkn.net/payment-alx',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -289,15 +311,18 @@ async function checkout() {
     const resp = await sendQuery({
       query: {
         ticket_id: id,
+        user_id: identityStore.profile.userId,
         first_name: checkoutStore.getFirstName,
         last_name: checkoutStore.getLastName,
         phone: checkoutStore.getPhone,
         currency: 'ETB',
-        amount: 200,
+        amount: checkoutStore.result.price,
       },
     });
     console.log(resp);
-    window.location.href = resp.data;
+    if (resp.data) {
+      window.location.href = resp.data;
+    }
   } catch (error) {
     console.log(error);
   }

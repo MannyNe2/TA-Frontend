@@ -14,9 +14,11 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.9",
+    "@apollo/client": "^3.7.1",
     "@quasar/extras": "^1.15.1",
     "@rollup/plugin-graphql": "^1.1.0",
+    "@vue/apollo-composable": "4.0.0-beta.7",
+    "apollo-link-ws": "^1.0.20",
     "axios": "^1.4.0",
     "cross-fetch": "^3.1.5",
     "date-fns": "^2.29.2",
@@ -25,6 +27,7 @@
     "graphql-ws": "^5.10.1",
     "lodash-es": "^4.17.21",
     "pinia": "^2.0.11",
+    "qrcode": "^1.5.3",
     "quasar": "^2.6.0",
     "store": "^2.0.12",
     "vue": "^3.0.0",

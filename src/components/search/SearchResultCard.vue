@@ -70,11 +70,11 @@
               class="q-my-none text-weight-light text-primary text-subtitle1 text-right"
             >
               <span class="text-weight-bold">
-                {{ result.vehicle.capacity - result.vehicle.booked_seats }}
+                {{ result.vehicle.capacity }}
               </span>
               seats available,
               <span class="text-weight-bold">
-                {{ result.vehicle.booked_seats }}
+                {{ result.vehicle.capacity - result.vehicle.booked_seats }}
               </span>
               occupied
             </h6>
@@ -124,7 +124,7 @@
               size="md"
               padding="sm xl"
               class="text-capitalize text-weight-regular rounded-borders"
-              @click="bookNow"
+              @click="bookNow(result.id)"
             />
           </div>
         </div>
@@ -154,12 +154,12 @@ export default defineComponent({
       return format(date, formatString);
     }
 
-    function bookNow() {
+    function bookNow(id) {
       checkoutStore.setSelection({
         ...props.result,
         passengers: parseInt(props.passengers),
       });
-      const id = faker.datatype.uuid();
+      //const id = faker.datatype.uuid();
       // router.push(`/book/${id}`);
       router.push({ name: 'book-start', params: { id: id } });
     }

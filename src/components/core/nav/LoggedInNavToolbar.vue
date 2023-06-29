@@ -3,9 +3,8 @@
     <!-- <q-btn @click="toggleDrawer" icon="menu" flat round /> -->
     <q-toolbar-title class="row q-gutter-x-lg items-center">
       <HindekeLogo />
-      <LinkMenu :links="links" />
     </q-toolbar-title>
-    <q-item clickable class="rounded-borders">
+    <q-item clickable class="rounded-borders q-pa-none q-pl-md q-pr-md">
       <q-item-section>
         {{ profile.firstName }} {{ profile.lastName }}
       </q-item-section>
@@ -17,13 +16,13 @@
       </q-item>
       <q-menu anchor="bottom right" self="top right">
         <q-list style="min-width: 200px">
-          <q-item clickable>
+          <q-item clickable to="/ticket">
             <q-item-section avatar>
-              <q-icon name="ti-user" size="xs" />
+              <q-icon name="ti-ticket" size="xs" />
             </q-item-section>
             <q-item-section>
-              <q-item-label> Profile </q-item-label>
-              <q-item-label caption> View and edit your profile </q-item-label>
+              <q-item-label> Tickets </q-item-label>
+              <q-item-label caption> View your tickets </q-item-label>
             </q-item-section>
           </q-item>
           <q-separator />
@@ -52,7 +51,7 @@ import menuLinks from 'assets/data/landing-menu.json';
 
 export default defineComponent({
   name: 'LoggedInNavToolbar',
-  components: { HindekeLogo, LinkMenu },
+  components: { HindekeLogo },
   setup() {
     const identityStore = useIdentityStore();
     const router = useRouter();

@@ -74,12 +74,18 @@ const firstName = isLoggedIn.value
   ? ref(identityStore.profile.firstName.toString())
   : ref();
 const middleName = isLoggedIn.value
-  ? ref(identityStore.profile.middleName.toString())
+  ? ref(
+      identityStore.profile.middleName.toString()
+        ? identityStore.profile.middleName.toString()
+        : ''
+    )
   : ref();
 const lastName = isLoggedIn.value
   ? ref(identityStore.profile.lastName.toString())
   : ref();
-const phone = ref();
+const phone = isLoggedIn.value
+  ? ref(identityStore.profile.phone.toString())
+  : ref();
 
 function toConfirm() {
   checkoutStore.setFirstName(firstName.value);

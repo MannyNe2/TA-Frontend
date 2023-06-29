@@ -69,6 +69,7 @@ export const useTicketSearchStore = defineStore('ticket-search', {
           })
           .then(({ data }) => data && data.tickets_available);
         if (res) {
+          this.results = res;
           return res;
         }
         //router.push('/home');

@@ -1,0 +1,13 @@
+query getTickets {
+  tickets_bought {
+    id
+    user_id
+    user_phone
+    transaction {
+      tickets_available {
+        start_location
+        destination
+      }
+    }
+  }
+}

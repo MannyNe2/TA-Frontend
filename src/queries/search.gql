@@ -23,5 +23,6 @@ query search(
     price
     seats_left
     departure_date
+    id
   }
 }

@@ -3,7 +3,9 @@ query signIn($address: String!, $password: String!) {
     userId
     accessToken
     firstName
+    middleName
     lastName
+    phone
     role
   }
 }

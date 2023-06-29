@@ -3,7 +3,6 @@
     <!-- <q-btn @click="toggleDrawer" icon="menu" flat round /> -->
     <q-toolbar-title class="row q-gutter-x-lg items-center">
       <HindekeLogo />
-      <LinkMenu :links="links" />
     </q-toolbar-title>
     <div class="q-gutter-sm row">
       <q-btn
@@ -52,7 +51,6 @@ export default defineComponent({
   components: {
     AuthCard,
     HindekeLogo,
-    LinkMenu,
   },
   setup() {
     const authDialogLogin = ref(false);
