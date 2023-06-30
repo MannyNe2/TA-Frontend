@@ -62,6 +62,7 @@
       </q-input>
       <div class="row justify-end q-py-lg">
         <q-btn
+          :loading="btnLoading"
           label="Search"
           type="submit"
           color="primary"
@@ -94,8 +95,10 @@ const destination = ref(null);
 const date = ref(null);
 const returnDate = ref(null);
 const passengers = ref(1);
+const btnLoading = ref(false);
 
 async function onSubmit() {
+  btnLoading.value = true;
   store.setOrigin(origin.value);
   store.setDestination(destination.value);
   store.setDate(date.value);
@@ -109,6 +112,7 @@ async function onSubmit() {
   };
   const x = await store.search(dataQuery);
   console.log(x);
+  btnLoading.value = false;
   router.push('/search');
 }
 </script>
